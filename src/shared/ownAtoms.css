@@ -1,0 +1,109 @@
+.w1-5 {
+  width: 1.5rem;
+}
+
+.mw-50 {
+  min-width: 50%;
+}
+
+.pa015 {
+  padding: 0.15rem;
+}
+
+.pa01 {
+  padding: 0.1rem;
+}
+
+.pa035 {
+  padding: 0.35rem;
+}
+
+.nl1px {
+  margin-left: -1px;
+}
+
+.select {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23667189'%20d='M2%200L0%202h4zm0%205L0%203h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 0.4rem 0.5rem;
+  background-position: right 0.35rem center;
+  padding-right: 1.2rem;
+}
+
+.bg-img-dark_dotted2 {
+  background-image: url('~@/shared/misc/dark_dotted2.png');
+}
+
+.c-brand {
+  color: #007510;
+}
+
+.bg-brand {
+  background-color: #007510;
+}
+
+.bg-dollar-light-30 {
+  background-color: rgba(231, 235, 212, 0.3);
+}
+
+.bg-dollar-30 {
+  background-color: rgba(166, 204, 112, 0.3);
+}
+
+.bg-bitcoin-10 {
+  background-color: rgba(248, 160, 54, 0.1);
+}
+
+.focus-z-999:focus {
+  z-index: 999;
+}
+
+.focus-bs-brand-30:focus {
+  box-shadow: 0 0 0 2px rgba(0, 117, 16, 0.3);
+}
+
+.focus-b-brand:focus {
+  border-color: #007510;
+}
+
+.mw-300 {
+  min-width: 300px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.ts-black-30 {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.bs-black-30 {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.delete:before,
+.delete:after {
+  background-color: white;
+  content: '';
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+.delete:before {
+  height: 2px;
+  width: 50%;
+}
+.delete:after {
+  height: 50%;
+  width: 2px;
+}
+
+@media screen and (min-width: 30em) {
+  .w2-ns {
+    width: 2rem;
+  }
+}

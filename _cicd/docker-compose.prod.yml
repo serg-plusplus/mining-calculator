@@ -1,0 +1,21 @@
+version: '3'
+
+volumes:
+  app-static:
+
+services:
+  app:
+    build: ./app
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+    volumes:
+      - app-static:/usr/src/app/build/public
+  nginx:
+    build: ./nginx
+    depends_on:
+      - app
+    ports:
+      - 80:80
+    volumes:
+      - app-static:/var/www/static:ro

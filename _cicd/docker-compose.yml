@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    image: node:alpine
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+    ports:
+      - 3001:3001 # webpack-dev-server
+    working_dir: /usr/src/app
+    volumes:
+      - ./app:/usr/src/app
+    command: yarn dev
+  nginx:
+    image: nginx:alpine
+    links:
+      - app
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./app/public:/var/www/static:ro

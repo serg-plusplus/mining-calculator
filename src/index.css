@@ -1,0 +1,65 @@
+@import '~tachyons';
+@import '~@/shared/ownAtoms.css';
+
+html {
+  font-family: sans-serif;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+}
+
+/*
+  Fix display of HTML5 structural elements in older browsers.
+*/
+article,
+aside,
+dialog,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+/*
+  Avoid 300ms click delay on touch devices that support the touch-action CSS property.
+  @see https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
+*/
+a,
+area,
+button,
+[role='button'],
+input:not([type='range']),
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+/*
+  IE10+ doesn't honor <meta name='viewport'> in some cases.
+  @see https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
+*/
+@-ms-viewport {
+  width: device-width;
+}
+
+/*
+  Suppress the focus outline on elements that cannot be accessed via keyboard.
+  This prevents an unwanted focus outline from appearing around elements that might still respond to pointer events.
+  @see https://github.com/twbs/bootstrap/blob/v4-dev/scss/_reboot.scss
+*/
+[tabindex='-1']:focus {
+  outline: 0 !important;
+}
