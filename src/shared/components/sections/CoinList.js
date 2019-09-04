@@ -11,7 +11,7 @@ const CoinList = ({ coins, addCoinToCalculator }) => (
         <article key={coin.id} className="dt w-100 bb b--black-05 pb2 ph1 mt2">
           <div className="dtc h-auto w1-5 w2-ns v-mid">
             <img
-              src={coin.cmcImgUrl}
+              src={coin.imgUrl}
               alt={`coinmarketcap-${coin.symbol}`}
               className="db h-auto w1-5 w2-ns"
             />

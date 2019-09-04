@@ -1,5 +1,4 @@
 import nodeFetch from 'node-fetch';
-import htmlparser2 from 'htmlparser2';
 import { COIN_DATA_UPDATE_PERIOD } from '@/shared/constants';
 
 // Helper wrapper over default `fetch`.
@@ -11,58 +10,6 @@ const fetchJSON = async (url, opts) => {
   }
 
   return body;
-};
-
-const COINMARKETCAP_CURRENCY_PAGE_URL_PREFIX =
-  'https://coinmarketcap.com/currencies/';
-const META_TAG_NAME = 'meta';
-const OG_IMAGE_PROP = 'og:image';
-// Parse `coinmarketcap` currency page and get coin image url from it.
-const fetchCmcCoinImgUrl = async cmcCoinId => {
-  const url = `${COINMARKETCAP_CURRENCY_PAGE_URL_PREFIX}${cmcCoinId}`;
-  const res = await nodeFetch(url);
-  if (res.status !== 200) {
-    throw new Error(res.statusText);
-  }
-
-  return new Promise((resolve, reject) => {
-    let coinImgUrl;
-    const parserStream = new htmlparser2.WritableStream({
-      onopentag: (name, attrs) => {
-        if (name === META_TAG_NAME && attrs.property === OG_IMAGE_PROP) {
-          coinImgUrl = attrs.content;
-          res.body.end();
-        }
-      },
-      onerror: err => {
-        reject(err);
-      },
-      onend: () => {
-        if (coinImgUrl === void 0) {
-          reject(new Error('Image Not Found'));
-          return;
-        }
-
-        resolve(coinImgUrl);
-      },
-    });
-
-    res.body.pipe(parserStream);
-  });
-};
-
-const CMC_IMG_URL_PLACEHOLDER =
-  'https://s2.coinmarketcap.com/static/img/coins/32x32/1627.png';
-const upgradeWithCmcImgUrl = async ({ cmcId, ...coin }) => {
-  let cmcImgUrl;
-  try {
-    const cmcCoinImgUrl = await fetchCmcCoinImgUrl(cmcId);
-    cmcImgUrl = cmcCoinImgUrl.replace('200x200', '64x64');
-  } catch (err) {
-    cmcImgUrl = CMC_IMG_URL_PLACEHOLDER;
-  }
-
-  return { ...coin, cmcImgUrl: `/api/img?url=${cmcImgUrl}` };
 };
 
 const WHATTOMINE_GPU_COINS_URL = 'http://whattomine.com/coins.json';
@@ -108,12 +55,12 @@ const fetchCoinData = async () => {
         netHash: wtmCoin.nethash,
         blockTime: wtmCoin.block_time,
         blockReward: wtmCoin.block_reward,
+        imgUrl: `https://raw.githubusercontent.com/atomiclabs/cryptocurrency-icons/master/128/color/${cmcCoin.symbol.toLowerCase()}.png`
       });
     });
   });
 
-  // Update current coin data.
-  return Promise.all(coinData.map(upgradeWithCmcImgUrl));
+  return coinData;
 };
 
 let currentCoinData = [];

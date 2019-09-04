@@ -124,7 +124,7 @@ class Calculator extends PureComponent {
               className="db mb1 f7 mid-gray fw4 pr2"
             >
               <img
-                src={data.cmcImgUrl}
+                src={data.imgUrl}
                 alt={`coinmarketcap-${data.symbol}`}
                 className="w1 h1 mh1 v-mid"
               />

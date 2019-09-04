@@ -11,7 +11,8 @@ const cspConfig = {
       // If you use Base64 encoded images (i.e. inlined images), then you will
       // need the following:
       'data:',
-      '*.coinmarketcap.com',
+      // '*.coinmarketcap.com',
+      '*.githubusercontent.com'
     ],
     fontSrc: ["'self'", 'data:'],
     objectSrc: ["'self'"],
